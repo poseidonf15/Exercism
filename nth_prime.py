@@ -2,7 +2,7 @@
 Module to the Nth prime.
 """
 
-def prime(number):
+def prime(number: int):
     """Function returns the prime number with a given position
 
     args:

@@ -2,7 +2,7 @@
 Module to output all the contiguous substrings of a certain length.
 """
 
-def slices(series, length):
+def slices(series: str, length: int):
     """Function returns all the contiguous substrings of a given length.
 
     args:

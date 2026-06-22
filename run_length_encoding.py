@@ -2,7 +2,7 @@
 Module to encode and decode the 'run length'
 """
 
-def decode(string):
+def decode(string: str):
     """Function return the decoded version of a given string.
 
     args:
@@ -25,7 +25,7 @@ def decode(string):
 
     return result
 
-def encode(string):
+def encode(string: str):
     """Function return the encoded version of a given string.
 
     args:
