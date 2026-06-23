@@ -11,19 +11,25 @@ def count_words(sentence: str):
         dict: dict of all the words and numbers as keys and the amount of time they occur is their value
     """
     sentence = " " + sentence + " "
+    cleaned = []
 
-    result = "".join([char.lower() if char.isalpha() else char if char.isdigit() or char == "'" else " "
-                      for char in sentence])
-    for index, char in enumerate(result):
-        if char == "'" and not(result[index - 1].isalpha() and result[index + 1].isalpha()):
-            result = result[:index] + " " + result[index + 1:]
-    result = result.split()
+    for index, char in enumerate(sentence):
+        if char.isalpha():
+            cleaned.append(char.lower())
 
-    final_result = {}
-    for word in result:
-        if word in final_result:
-            final_result[word] += 1
+        elif char.isdigit():
+            cleaned.append(char)
+
+        elif char == "'" and sentence[index - 1].isalpha() and sentence[index + 1].isalpha():
+            cleaned.append(char)
+
         else:
-            final_result[word] = 1
+            cleaned.append(" ")
 
-    return final_result
+    words = "".join(cleaned).split()
+
+    words_count = {}
+    for word in words:
+        words_count[word] = words_count.get(word, 0) + 1
+
+    return words_count
