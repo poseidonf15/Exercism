@@ -25,7 +25,7 @@ class Character:
         points = [random.randint(1, 6) for _ in range(4)]
         return sum(points) - min(points)
 
-def modifier(value):
+def modifier(value: int):
     """Function to calculate the amount of HP using the character's constitution
 
     args:
