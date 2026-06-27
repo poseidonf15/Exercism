@@ -9,7 +9,7 @@ class Luhn:
     """
 
     def __init__(self, card_num):
-        """Initialize the card with it's number"""
+        """Initialize the card with its number"""
         self.card_num = card_num
 
     def valid(self):
