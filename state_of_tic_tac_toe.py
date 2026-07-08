@@ -19,15 +19,19 @@ def gamestate(board: list):
         raise ValueError("Wrong turn order: X went twice")
 
     x_won, o_won = False, False
-
-    for row in board:
-        x_won, o_won = check_for_win(row, x_won, o_won)
+    combinations = board.copy()
 
     for index in range(3):
-        x_won, o_won = check_for_win(board[0][index] + board[1][index] + board[2][index], x_won, o_won)
+        combinations.append(board[0][index] + board[1][index] + board[2][index])
 
-    x_won, o_won = check_for_win(board[0][0] + board[1][1] + board[2][2], x_won, o_won)
-    x_won, o_won = check_for_win(board[0][2] + board[1][1] + board[2][0], x_won, o_won)
+    combinations.append(board[0][0] + board[1][1] + board[2][2])
+    combinations.append(board[0][2] + board[1][1] + board[2][0])
+
+    for combination in combinations:
+        if combination == "XXX":
+            x_won = True
+        elif combination == "OOO":
+            o_won = True
 
     if x_won and o_won:
         raise ValueError("Impossible board: game should have ended after the game was won")
@@ -37,25 +41,3 @@ def gamestate(board: list):
     if " " in "".join(board):
         return "ongoing"
     return "draw"
-
-
-def check_for_win(combination: str, x_won: bool, o_won: bool):
-    """Function to determine whether a given combination is winning for one of the sides.
-
-    args:
-        combination (str): 'Tic Tac Toe' combination
-        x_won (bool): x winning state
-        o_won (bool): o winning state
-
-    returns:
-        bool: whether either of them have a winning combination
-    """
-
-    if combination == "XXX" and not x_won:
-        x_won = True
-    elif combination == "OOO" and not o_won:
-        o_won = True
-
-    return x_won, o_won
-
-print(gamestate(["OOO","XX "," X "]))
