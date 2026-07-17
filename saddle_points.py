@@ -17,13 +17,19 @@ def saddle_points(matrix):
         if row_length != len(row):
             raise ValueError("irregular matrix")
 
-    result = []
-    matrix_columns = list(zip(*matrix))
+    column_mins = []
+    for column_index in range(0, row_length):
+        column = []
+        for row in matrix:
+            column.append(row[column_index])
+        column_mins.append(min(column))
 
-    for row in range(0, len(matrix)):
-        row_max = max(matrix[row])
-        for column in range(0,len(matrix_columns)):
-            if matrix_columns[column][row] == min(matrix_columns[column]) and matrix[row][column] == row_max:
-                result.append((row,column))
+    result = []
+
+    for row_index, row in enumerate(matrix):
+        row_max = max(row)
+        for column_index in range(row_length):
+            if matrix[row_index][column_index] == column_mins[column_index] == row_max:
+                result.append((row_index,column_index))
 
     return [{"row": coordinate[0] + 1, "column": coordinate[1] + 1} for coordinate in result]
