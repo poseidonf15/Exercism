@@ -15,7 +15,7 @@ NUMBERS = ["No green bottles",
            "Ten green bottles"]
 
 def recite(start, take=1):
-    """Function returns specifiec verses from the childrens song 'Tne Green Bottles'.
+    """Function returns specific verses from the childrens song 'Tne Green Bottles'.
 
     Args:
         start (int): The index of the starting verse
